@@ -23,7 +23,7 @@ python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements
 
-gunicorn -w 4 --bind 0.0.0.0 wsgi:app
+gunicorn -w 9 --bind 0.0.0.0 wsgi:app
 
 ```
 
