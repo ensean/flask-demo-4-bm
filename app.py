@@ -5,8 +5,8 @@ import math
 import os
 from flask import Flask
 from flask import request
-from flask import Flask,render_template, request
-from flask_mysqldb import MySQL
+from flask import Flask, request
+import pymysql
 
 app = Flask(__name__)
  
@@ -14,11 +14,16 @@ app.config['MYSQL_HOST'] = os.getenv('MYSQL_HOST', 'localhost')
 app.config['MYSQL_USER'] = os.getenv('MYSQL_USER', 'root')
 app.config['MYSQL_PASSWORD'] = os.getenv('MYSQL_PASSWORD', '123456')
 app.config['MYSQL_DB'] = os.getenv('MYSQL_DB', 'flask_db')
-mysql = MySQL(app)
+
+conn = pymysql.connect(host=app.config['MYSQL_HOST'], 
+                    user=app.config['MYSQL_USER'] , 
+                    password=app.config['MYSQL_PASSWORD'], 
+                    db=app.config['MYSQL_DB'], 
+                    charset='utf8mb4')
 
 @app.route("/goods")
 def list_goods():
-    cur = mysql.connection.cursor()
+    cur = conn.cursor()
     cur.execute("SELECT * FROM goods")
     rv = cur.fetchall()
     cur.close()
