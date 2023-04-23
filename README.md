@@ -16,9 +16,12 @@
 
 #### Deployment guide
 
+![](imgs/2023-04-23-13-47-15.png)
+
+![](imgs/2023-04-23-13-48-49.png)
 ```shell
 sudo yum install git tmux -y
-
+sudo yum install python3-devel mysql-devel
 git clone https://github.com/ensean/flask-demo-4-bm.git
 cd flask-demo-4-bm
 python3 -m venv venv
